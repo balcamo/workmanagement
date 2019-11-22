@@ -3,9 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.2.0"
+    "bootstrap": "^4.3.1",
+    "bootstrap-social": "^5.1.1",
+    "cross-fetch": "2.1.0",
+    "isomorphic-fetch": "^2.2.1",
+    "prop-types": "15.6.0",
+    "react": "^16.8.6",
+    "react-adal": "^0.4.24",
+    "react-animation-components": "3.0.0",
+    "react-dom": "^16.8.6",
+    "react-popper": "0.9.2",
+    "react-redux-form": "1.16.8",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "react-transition-group": "2.3.0",
+    "reactstrap": "6.1.0",
+    "request": "^2.88.0"
   },
   "scripts": {
     "start": "react-scripts start",
