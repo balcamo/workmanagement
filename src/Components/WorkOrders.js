@@ -1,8 +1,7 @@
-import React, {Component, useState } from 'react';
+import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
 import { Input } from 'reactstrap';
-import { watchFile } from 'fs';
-
+import Autocomplete from 'react-autocomplete';
 
 class WorkOrders extends Component {
     constructor(props) {
@@ -15,24 +14,23 @@ class WorkOrders extends Component {
           orderFrom:Number,
           orderTo:Number,
           dropdownOpen:false,
-          setDropdownOpen:false
+          setDropdownOpen:false,
+          isHidden:true,
         };
         this.toggleDropDown = this.toggleDropDown.bind(this);
 
       }
-      toggleDropDown(){
-          this.setState({dropdownOpen: !this.state.dropdownOpen});
-      }
-      handleNewStat(newStatus){
+    toggleDropDown(){
+        this.setState({dropdownOpen: !this.state.dropdownOpen});
+    }
+    handleNewStat(newStatus){
         setTimeout(() => {
             this.setState({selectedState:newStatus});
             console.log('in wait '+this.state.selectedState);
             this.ChangeInStatus();
         }, 1000);
-        
-        
-      }
-      ChangeInStatus(){
+    }
+    ChangeInStatus(){
         console.log('in change function '+this.state.selectedState);
         fetch(this.state.baseURL+this.state.selectedState, {
             method:"GET"
@@ -48,15 +46,29 @@ class WorkOrders extends Component {
         .then(res => res.json())
         .then((data) => {
             console.log(data);
-            //var tempArr = data;
-            //tempArr.sort(function(a, b){return a - b});
-            this.setState({ workOrderNums: data })
+            var tempArr = data[0].value;
+            tempArr.map(val=>this.state.workOrderNums.push(val));
+            //this.setState({ workOrderNums:tempArr });
+            console.log("state var "+this.state.workOrderNums);
+            this.setState({isHidden:false});
             })
             .catch(console.log);
-        console.log(this.state.workOrderNums);
-        
-      }
-      render(){
+    }
+    render(){
+        const Child = (
+            <div>
+               <Autocomplete
+                    getItemValue={(item) => item}
+                    items={this.state.workOrderNums}
+                    renderItem={(item, isHighlighted) =>
+                        <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+                        {item}
+                        </div>
+                    }
+                    onChange={(e) => this.setState({orderFrom:e.target.value})}
+                />
+            </div>
+        );
         return (
             <div>
                 <header >
@@ -75,10 +87,10 @@ class WorkOrders extends Component {
                     </Input>
                 </div>
                 <div>
-
+                    {!this.state.isHidden &&  (<Child/>)}
                 </div>
             </div>
         )
-      }
+    }
 }
 export default WorkOrders;
