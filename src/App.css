@@ -20,10 +20,10 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-div,p {
+div,p{
   color:white;
 }
-
+ 
 .App-link {
   color: #61dafb;
 }
