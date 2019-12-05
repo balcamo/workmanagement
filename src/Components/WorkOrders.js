@@ -8,7 +8,7 @@ class WorkOrders extends Component {
         super(props);
         this.state = {
           baseURL:'https://apiarydev-ispringbrook.azurewebsites.net/api/workorder',
-          selectedState: 'Status options',
+          selectedState: 'In Progress',
           setState:false,
           workOrderNums:[],
           orderFrom:"",
@@ -77,7 +77,7 @@ class WorkOrders extends Component {
             console.log(data);
             if(data.length===0){
                 this.setState({returnedWorkOrders:[],orderFrom:'',
-                    orderTo:'',selectedState:'Status options'})
+                    orderTo:'',selectedState:'In Progress'})
                 alert("There are no work orders in that range for the given status.\nPlease try again with different values.")
 
             }else{
@@ -85,7 +85,7 @@ class WorkOrders extends Component {
                 
                 tempdata.map(val=>this.state.returnedWorkOrders.push(val.value));
                 this.setState({returnedWorkOrders:this.state.returnedWorkOrders,
-                    orderFrom:"",orderTo:"",selectedState:'Status options'})
+                    orderFrom:"",orderTo:"",selectedState:'In Progress'})
 
                 console.log(this.state.returnedWorkOrders);
             }
@@ -114,7 +114,7 @@ class WorkOrders extends Component {
                 <Form>
                     <FormGroup>
                         <Input type="select" value={this.state.selectedState} onChange={(e)=> this.setState({selectedState:e.target.value})} >
-                            <option value='Status options'>Status options</option>
+                            <option value='Status options' header>Status options</option>
                             <option value='New'>New</option>
                             <option value='Not Started'>Not Started</option>
                             <option value='In Progress'>In Progress</option>
@@ -132,7 +132,7 @@ class WorkOrders extends Component {
                         <Input id="ToOrder" type="text" value={this.state.orderTo} onChange={(e)=> this.setState({orderTo:e.target.value})}/>
                     </FormGroup>
                     <Button type="submit" onClick={(e)=>this.GetWorkOrders(e)}>Get Work Orders</Button>
-                    <Button type="submit" onClick={(e)=>this.printWO(e)}>Print</Button>
+                   
                 </Form>
                 <div>
                     <h4>Work Orders</h4>
