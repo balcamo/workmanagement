@@ -21,6 +21,7 @@ class Main extends Component{
                 <BrowserRouter>
                     <Switch>
                         <Route path="/" component={WorkOrders} />
+                        <Route path="/?:pdf" render={WorkOrders} />
                     </Switch>
                 </BrowserRouter>
             </div>

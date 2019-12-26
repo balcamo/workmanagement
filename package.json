@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@grapecity/wijmo.react.all": "^5.20193.637",
     "@material-ui/lab": "^4.0.0-alpha.35",
     "bootstrap": "^4.4.1",
     "bootstrap-social": "^5.1.1",
