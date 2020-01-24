@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { NavItem, Nav, NavLink } from 'reactstrap';
+import * as urls from '../urlsConfig';
 
 class NavNav extends Component{
     constructor(props) {
@@ -22,17 +23,15 @@ class NavNav extends Component{
             <div>
                 <Nav pills>
                     <NavItem>
-                        <NavLink href="https://apiarydev-react-homepage.azurewebsites.net/"><span className="fa fa-home fa-lg"></span> Home </NavLink>
+                        <NavLink href={urls.homePage}><span className="fa fa-home fa-lg"></span> Home </NavLink>
                     </NavItem>
                     <NavItem >
-                        <NavLink href="https://apiarydev-react-homepage.azurewebsites.net/bugs"><span className="fa fa-bug fa-lg"></span> Bugs</NavLink>
+                        <NavLink href={urls.wufooBugs}><span className="fa fa-bug fa-lg"></span> Bugs</NavLink>
                     </NavItem>  
-                    {/* <NavItem>
-                        <NavLink href="https://pandora.verawaterandpower.com/"><span className="fa fa-home fa-lg"></span> Home </NavLink>
-                    </NavItem>    
                     <NavItem >
-                        <NavLink href="https://pandora.verawaterandpower.com/bugs"><span className="fa fa-bug fa-lg"></span> Bugs</NavLink>
-                    </NavItem>                 */}
+                        <NavLink href={urls.maps}><span className="fa fa-map fa-lg"></span> Maps</NavLink>
+                    </NavItem>  
+                                   
                     
                 </Nav>
 
