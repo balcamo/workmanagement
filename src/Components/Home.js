@@ -9,10 +9,8 @@ function Home() {
                 <BreadcrumbItem >Work Management</BreadcrumbItem>
             </Breadcrumb>
                 
-            <header className="App-header">
-                <h1>Work Management</h1>
-            </header>
-            <Button color="primary" size="lg" ><a href="/workOrders">Work Orders</a></Button>
+            <h1>Work Management</h1>
+            <Button size="lg" className="Breadcrumbs" ><a href="/workOrders">Work Orders</a></Button>
         </div>
     )
 }

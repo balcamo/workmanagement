@@ -28,8 +28,12 @@ div,p{
   color: #61dafb;
 }
 .Breadcrumbs{
-  background-color:#282b40; 
+  background:#3351c9; 
   opacity: 0.5;
+}
+.Breadcrumbs a{
+  opacity: 1;
+  color:black;
 }
 @keyframes App-logo-spin {
   from {
