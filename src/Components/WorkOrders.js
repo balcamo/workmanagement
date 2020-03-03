@@ -68,44 +68,48 @@ class WorkOrders extends Component {
     
     GetWorkOrders(e) {
         e.preventDefault();
-        this.toggleLoading();
-        var temp=JSON.stringify([this.state.orderFrom.toString(),this.state.orderTo.toString(),this.state.selectedState]);
-        console.log('in change function '+this.state.selectedState);
-        
-        fetch(this.state.baseURL, {
-            method:"POST",
-            body:temp,
-            headers:{
-                'Content-Type': 'application/json'
-            }
-        }).then(function(response) {
-            if (response.ok) {
-            return response
-            } else {
-            var error = new Error(response.statusText);
-            error.response = response;
-            throw error;
-            }
-        })
-        .then(res => res.json())
-        .then((data) => {
-            console.log(data);
-            if(data.length===0){
-                this.setState({returnedWorkOrders:[],orderFrom:'',
-                    orderTo:'',selectedState:'In Progress',loading:false})
-                alert("There are no work orders in that range for the given status.\nPlease try again with different values.");
-
-            }else{
-                this.setState({returnedWorkOrders:[]});
-                var tempdata=data;
-                
-                tempdata.map(val=>this.state.returnedWorkOrders.push(val.value));
-                this.setState({loading:false, returnedWorkOrders:this.state.returnedWorkOrders})
-
-                console.log(this.state.returnedWorkOrders);
-            }
+        if(this.state.orderFrom =="" || this.state.orderTo==""){
+            alert("There are no work orders in that range for the given status.\nPlease try again with different values.");
+        } else {
+            this.toggleLoading();
+            var temp=JSON.stringify([this.state.orderFrom.toString(),this.state.orderTo.toString(),this.state.selectedState]);
+            console.log('in change function '+this.state.selectedState);
+            
+            fetch(this.state.baseURL, {
+                method:"POST",
+                body:temp,
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+            }).then(function(response) {
+                if (response.ok) {
+                return response
+                } else {
+                var error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+                }
             })
-            .catch(console.log);
+            .then(res => res.json())
+            .then((data) => {
+                console.log(data);
+                if(data.length===0){
+                    this.setState({returnedWorkOrders:[],orderFrom:'',
+                        orderTo:'',selectedState:'In Progress',loading:false})
+                    alert("There are no work orders in that range for the given status.\nPlease try again with different values.");
+
+                }else{
+                    this.setState({returnedWorkOrders:[]});
+                    var tempdata=data;
+                    
+                    tempdata.map(val=>this.state.returnedWorkOrders.push(val.value));
+                    this.setState({loading:false, returnedWorkOrders:this.state.returnedWorkOrders})
+
+                    console.log(this.state.returnedWorkOrders);
+                }
+                })
+                .catch(console.log);
+        }
         return false
     }
     
