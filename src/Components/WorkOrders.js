@@ -4,12 +4,13 @@ import jsreport from 'jsreport-browser-client-dist';
 import { Button, Form, FormGroup, Input, Label, Table,
      Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import LoadingSpinner from './LoadingSpinner';
+import * as urls from '../urlsConfig';
 
 class WorkOrders extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          baseURL:'https://apiarydev-windows-ispringbrook.azurewebsites.net/api/workorder',
+          baseURL:urls.springbrook+'/workorder',
           selectedState: 'In Progress',
           setState:false,
           workOrderNums:[],

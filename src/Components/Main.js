@@ -20,7 +20,7 @@ class Main extends Component{
                 </Navbar>
                 <BrowserRouter>
                     <Switch>
-                        <Route path="/workOrders" component={WorkOrders} />
+                        <Route path="/WorkOrders" component={WorkOrders} />
                         <Route path="/" render={Home} />
                     </Switch>
                 </BrowserRouter>
