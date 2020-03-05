@@ -12,7 +12,7 @@ function Home() {
             <h1>Work Management</h1>
             
             <Button size="lg" className="Breadcrumbs" >
-                <a href="/WorkOrders">Work Orders</a>
+                <a href="/workOrders">Work Orders</a>
             </Button>
         </div>
     )

@@ -10,7 +10,7 @@ class WorkOrders extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          baseURL:urls.springbrook+'/workorder',
+          baseURL:urls.springbrook+'workorder',
           selectedState: 'In Progress',
           setState:false,
           workOrderNums:[],

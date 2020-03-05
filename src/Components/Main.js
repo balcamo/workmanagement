@@ -4,8 +4,6 @@ import { BrowserRouter,Switch, Route,withRouter } from 'react-router-dom';
 import NavNav from './nav';
 import WorkOrders from './WorkOrders';
 import Home from './Home';
-//import { actions } from 'react-redux-form';
-//import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 
 class Main extends Component{
@@ -20,7 +18,7 @@ class Main extends Component{
                 </Navbar>
                 <BrowserRouter>
                     <Switch>
-                        <Route path="/WorkOrders" component={WorkOrders} />
+                        <Route path="/workOrders" component={WorkOrders} />
                         <Route path="/" render={Home} />
                     </Switch>
                 </BrowserRouter>
