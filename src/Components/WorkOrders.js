@@ -54,7 +54,7 @@ class WorkOrders extends Component {
              .then(res => res.json())
              .then((data) => {
                 console.log(data);
-                 var tempArr =  data[0].value;
+                 var tempArr =  data[0];
                  tempArr.map(val=>this.state.workOrderNums.push(val.toString()));
                  this.setState({ workOrderNums: tempArr });
                  console.log("state var "+this.state.workOrderNums);
@@ -103,7 +103,7 @@ class WorkOrders extends Component {
                     this.setState({returnedWorkOrders:[]});
                     var tempdata=data;
                     
-                    tempdata.map(val=>this.state.returnedWorkOrders.push(val.value));
+                    tempdata.map(val=>this.state.returnedWorkOrders.push(val));
                     this.setState({loading:false, returnedWorkOrders:this.state.returnedWorkOrders})
 
                     console.log(this.state.returnedWorkOrders);
@@ -146,8 +146,8 @@ class WorkOrders extends Component {
        
     const workForms=(
             this.state.returnedWorkOrders.map((item)=>
-                <tr key={item.woNumber}>
-                    <td>{item.woNumber}</td>
+                <tr key={item.WorkOrderIndex}>
+                    <td>{item.WorkOrderIndex}</td>
                     <td>{item.creator}</td>
                     <td>{item.priority}</td>
                     <td>{item.description}</td>
