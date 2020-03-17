@@ -7,7 +7,8 @@ export const workMang='https://apiarydev-react-workmanagement.azurewebsites.net/
 export const esriPage='https://apiarydev-linux-iesri.azurewebsites.net/';
 export const springbrook='https://apiarydev-windows-ispringbrook.azurewebsites.net/api/';
 export const maps='https://apiarydev-react-maps.azurewebsites.net/';
-
+export const jsreort='https://vwp.jsreportonline.net';
+export const jstemplate="/WorkOedersDev/workOrders";
 //Test URLs
 // export const homePage='https://pandora.verawaterandpower.com/';
 // export const wufuPage='https://apiarytest-linux-iwufoo.azurewebsites.net/';
@@ -16,6 +17,8 @@ export const maps='https://apiarydev-react-maps.azurewebsites.net/';
 // export const springbrook='https://apiarytest-windows-ispringbrook.azurewebsites.net/api/';
 // export const maps='https://apiarytest-react-maps.azurewebsites.net/';
 // export const wufooBugs='https://pandora.verawaterandpower.com/bugs';
+// export const jsreort='https://vwp.jsreportonline.net';
+// export const jstemplate="/WorkOeder/workOrders";
 // // This is the Azure auth congig for test
 // const adalConfig = {
 //     tenant: 'ebba2929-765b-48f7-8c03-9b450ed099ba',

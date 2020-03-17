@@ -117,7 +117,9 @@ class WorkOrders extends Component {
     PrintWorkOrders(e) {
         e.preventDefault();
         
-        jsreport.serverUrl = 'https://vwp.jsreportonline.net';
+        jsreport.serverUrl = urls.jsreort;
+        // TEMPLATE NAME NEED TO BE STRING LITERAL
+        // MAKE SURE IT MATCHES THE BUILD
         let reportRequest = { template: { name: "/WorkOrders/workOrders" },
                               data: {workOrders:this.state.returnedWorkOrders},
                               express:{inputRequestLimit: "500mb"}
