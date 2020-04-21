@@ -160,7 +160,7 @@ class WorkOrders extends Component {
         return (
             <div>
                 <Breadcrumb className="Breadcrumbs">
-                        <BreadcrumbItem >Apiary</BreadcrumbItem>
+                        <BreadcrumbItem ><a href={urls.homePage}>Apiary</a></BreadcrumbItem>
                         <BreadcrumbItem><a href="/">Work Management</a></BreadcrumbItem>
                         <BreadcrumbItem active>Work Orders</BreadcrumbItem>
                     </Breadcrumb>
