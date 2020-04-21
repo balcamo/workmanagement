@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'font-awesome/css/font-awesome.css';
+import '@fortawesome/fontawesome-free/css/all.css'
 import 'bootstrap-social/bootstrap-social.css';
 import * as serviceWorker from './serviceWorker';
 /*import { runWithAdal } from 'react-adal';

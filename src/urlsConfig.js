@@ -9,6 +9,8 @@ export const springbrook='https://apiarydev-windows-ispringbrook.azurewebsites.n
 export const maps='https://apiarydev-react-maps.azurewebsites.net/';
 export const jsreort='https://vwp.jsreportonline.net';
 export const jstemplate="/WorkOedersDev/workOrders";
+export const payments='https://apiarydev-react-payments.azurewebsites.net';
+
 //Test URLs
 // export const homePage='https://pandora.verawaterandpower.com/';
 // export const wufuPage='https://apiarytest-linux-iwufoo.azurewebsites.net/';

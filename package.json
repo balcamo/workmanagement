@@ -3,6 +3,7 @@
   "version": "0.1.3",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
     "@grapecity/wijmo.react.all": "^5.20193.637",
     "@material-ui/lab": "^4.0.0-alpha.35",
     "bootstrap": "^4.4.1",
