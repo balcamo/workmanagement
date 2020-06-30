@@ -12,19 +12,14 @@ class WorkOrders extends Component {
         this.state = {
           baseURL:urls.springbrook+'workorder',
           selectedState: 'In Progress',
-          setState:false,
-          workOrderNums:[],
+          //setState:false,
           orderFrom:"",
           orderTo:"",
           dropdownOpen:false,
-          setDropdownOpen:false,
-          isHidden:true,
           returnedWorkOrders:[],
-          workOrderPDF:null,
-          report: '',
-          reportScript: '',
           loading: false,
-          pdf:''
+          newWO:[],
+          disabled:true
         };
         this.toggleDropDown = this.toggleDropDown.bind(this);
         this.GetWorkOrders = this.GetWorkOrders.bind(this);
@@ -38,35 +33,16 @@ class WorkOrders extends Component {
     toggleDropDown(){
         this.setState({dropdownOpen: !this.state.dropdownOpen});
     }
-    getData(){
-        setTimeout(() => {
-          fetch(this.state.baseURL, {
-              method:"GET"
-          }).then(function(response) {
-              if (response.ok) {
-                return response
-              } else {
-                var error = new Error(response.statusText);
-                error.response = response;
-                throw error;
-              }
-            })
-             .then(res => res.json())
-             .then((data) => {
-                console.log(data);
-                 var tempArr =  data[0];
-                 tempArr.map(val=>this.state.workOrderNums.push(val.toString()));
-                 this.setState({ workOrderNums: tempArr });
-                 console.log("state var "+this.state.workOrderNums);
-              })
-              .catch(console.log);
-        }, 200)
-      }
-    //get the data on load
+   
     componentDidMount(){
-       // this.getData();
     }
-    
+    /**
+     * 
+     * @param {the event of pushing a button to prevent the reload} e 
+     * this function will take the state variables selectedState, orderFrom, 
+     * and orderTo and make a call to the springbrook interface to retrieve 
+     * the workorders in the desired range with the gien status
+     */
     GetWorkOrders(e) {
         e.preventDefault();
         if(this.state.orderFrom =="" || this.state.orderTo==""){
@@ -113,15 +89,22 @@ class WorkOrders extends Component {
         }
         return false
     }
-    
+    /**
+     * 
+     * @param {the event of pushing the print button so we can prevent the reload of the page} e 
+     * This function will pass the list of WO to jsreport for printing. It is very important
+     * to change the template name when doing a build for dev or test
+     * Dev : "/WorkOrdersDev/workOrders"
+     * Test: "/WorkOrders/workOrders"
+     */
     PrintWorkOrders(e) {
         e.preventDefault();
         
         jsreport.serverUrl = urls.jsreort;
         // TEMPLATE NAME NEED TO BE STRING LITERAL
         // MAKE SURE IT MATCHES THE BUILD
-        let reportRequest = { template: { name: "/WorkOrders/workOrders" },
-                              data: {workOrders:this.state.returnedWorkOrders},
+        let reportRequest = { template: { name: "/WorkOrdersDev/workOrders" },
+                              data: {workOrders:this.state.newWO},
                               express:{inputRequestLimit: "500mb"}
                             };
         jsreport.headers['Authorization'] = 'Basic ' + 'dmVyYTp2ZXJhd2F0ZXJhbmRwb3dlcg==';
@@ -143,15 +126,58 @@ class WorkOrders extends Component {
         });
         return false;
     }
+    /**
+     * 
+     * @param {the work order that needs to be pushed 
+     *              added to a list to be printed} wo 
+     * @param {a string for which meters need to be 
+     *              associated with the workorder to be printed} SelectedMeters 
+     * each test case will push the result to the state var newWO which is what will be
+     * printed. The last if will allow the print button to be enabled once each WO has been 
+     * assigned meters for printing
+     */
+    makeWOList(wo,SelectedMeters){
+        var data;
+        if(SelectedMeters == "all"){
+            this.state.newWO.push(wo);
+        }else if(SelectedMeters == "none"){
+            wo.meters=[];
+            this.state.newWO.push(wo);
+        }
+        else{
+            data = wo.meters.filter(meter => meter.MeterIndex === SelectedMeters);
+            console.log(data);
+            wo.meters=[];
+            wo.meters.push(data[0]);
+            this.state.newWO.push(wo);
 
+        }
+        
+        
+        if(this.state.newWO.length === this.state.returnedWorkOrders.length){
+            this.setState({disabled:false});
+        }
+        console.log(this.state.newWO);
+    }
     render(){
-       
+    // this var populates the table on the page dynamicly   
     const workForms=(
             this.state.returnedWorkOrders.map((item)=>
                 <tr key={item.WorkOrderIndex}>
                     <td>{item.WorkOrderIndex}</td>
                     <td>{item.creator}</td>
-                    <td>{item.priority}</td>
+                    <td>
+                    <FormGroup>
+                        <Input type="select" name="select" onChange={(e)=> this.makeWOList(item, e.target.value)}>
+                            <option >----</option>
+                            <option value="none">None</option>
+                            <option value="all">All</option>
+                            {item.meters.map((meter)=>
+                                <option value={meter.MeterIndex} >{meter.MeterIndex}</option>)}
+                        
+                        </Input>
+                    </FormGroup>
+                    </td>
                     <td>{item.description}</td>
                 </tr>
             )
@@ -188,7 +214,7 @@ class WorkOrders extends Component {
                         <Input id="ToOrder" type="text" value={this.state.orderTo} onChange={(e)=> this.setState({orderTo:e.target.value})}/>
                     </FormGroup>
                     <Button type="submit" onClick={e=>this.GetWorkOrders(e)}>Get Work Orders</Button>
-                    <Button type="submit" onClick={e=>this.PrintWorkOrders(e)}>Print</Button>
+                    <Button type="submit" disabled={this.state.disabled} onClick={e=>this.PrintWorkOrders(e)}>Print</Button>
 
                 </Form>
                 <div>
@@ -199,7 +225,7 @@ class WorkOrders extends Component {
                                     <tr>
                                         <td>W.O. Number</td>
                                         <td>Creator</td>
-                                        <td>Priority</td>
+                                        <td>Meter</td>
                                         <td>Description</td>
                                     </tr>
                                 </thead>

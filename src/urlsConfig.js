@@ -8,7 +8,7 @@ export const esriPage='https://apiarydev-linux-iesri.azurewebsites.net/';
 export const springbrook='https://apiarydev-windows-ispringbrook.azurewebsites.net/api/';
 export const maps='https://apiarydev-react-maps.azurewebsites.net/';
 export const jsreort='https://vwp.jsreportonline.net';
-export const jstemplate="/WorkOedersDev/workOrders";
+export const jstemplate="/WorkOrdersDev/workOrders";
 export const payments='https://apiarydev-react-payments.azurewebsites.net';
 
 //Test URLs
@@ -20,7 +20,7 @@ export const payments='https://apiarydev-react-payments.azurewebsites.net';
 // export const maps='https://apiarytest-react-maps.azurewebsites.net/';
 // export const wufooBugs='https://pandora.verawaterandpower.com/bugs';
 // export const jsreort='https://vwp.jsreportonline.net';
-// export const jstemplate="/WorkOeder/workOrders";
+// export const jstemplate="/WorkOrder/workOrders";
 // export const payments='https://apiarytest-react-payments.azurewebsites.net';
 
 // // This is the Azure auth congig for test
