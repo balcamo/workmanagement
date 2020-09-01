@@ -103,7 +103,7 @@ class WorkOrders extends Component {
         jsreport.serverUrl = urls.jsreort;
         // TEMPLATE NAME NEED TO BE STRING LITERAL
         // MAKE SURE IT MATCHES THE BUILD
-        let reportRequest = { template: { name: "/WorkOrdersDev/workOrders" },
+        let reportRequest = { template: { name: "/WorkOrders/workOrders" },
                               data: {workOrders:this.state.newWO},
                               express:{inputRequestLimit: "500mb"}
                             };
