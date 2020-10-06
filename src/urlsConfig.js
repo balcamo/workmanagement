@@ -11,6 +11,21 @@ export const jsreort='https://vwp.jsreportonline.net';
 export const jstemplate="/WorkOrdersDev/workOrders";
 export const payments='https://apiarydev-react-payments.azurewebsites.net';
 
+const adalConfig = {
+    tenant: 'ebba2929-765b-48f7-8c03-9b450ed099ba',
+    clientId: '9f51bf14-61b7-4f15-b269-2b4ccd6b2971',
+    endpoints: {
+        api: '9f51bf14-61b7-4f15-b269-2b4ccd6b2971'
+    },
+    apiUrl: 'https://apiarydev-react-workmanagement.azurewebsites.net',
+    cacheLocation: 'localStorage'
+   };
+export const authContext = new AuthenticationContext(adalConfig);
+export const adalApiFetch = (fetch, url, options) =>
+    adalFetch(authContext, adalConfig.endpoints.api, fetch, adalConfig.apiUrl + url, options);
+export const withAdalLoginApi = withAdalLogin(authContext, adalConfig.endpoints.api);
+
+
 //Test URLs
 // export const homePage='https://pandora.verawaterandpower.com/';
 // export const wufuPage='https://apiarytest-linux-iwufoo.azurewebsites.net/';
